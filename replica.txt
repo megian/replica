@@ -1,1 +1,1 @@
-./Debug/main.c.o
+./Debug/main.c.o ./Debug/replica-file.c.o ./Debug/replica-file-header.c.o

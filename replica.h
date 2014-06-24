@@ -1,6 +1,6 @@
 /* -*-coding: utf-8;-*- */
 
-/* main.c
+/* replica.h
  * This file is part of Replica
  * Copyright (c) 2014, Gabriel Mainberger
  *
@@ -17,28 +17,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
+ 
+#ifndef __REPLICA_H__
+#define __REPLICA_H__
 
-#include "replica.h"
-#include "replica-file.h"
-#include "replica-file-header.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+#include <uuid/uuid.h>
 
-#define REP_VERSION "0.02"
-
-// 0.01 - 2014-04-26 - Gabriel Mainberger
-// 0.02 - 2014-06-24 - Gabriel Mainberger
-
-int main() {
-	replica_file_t *file_header;
-
-	printf("Replica %s\n\n", REP_VERSION);
-
-	file_header = replica_file_header_init ();
-	if (file_header != NULL) {
-		replica_file_header_print (file_header);
-		replica_file_header_free (file_header);
-	}
-
-	replica_file_read ();
-
-	return (0);
-}
+#endif /* __REPLICA_H__ */

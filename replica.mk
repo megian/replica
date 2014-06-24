@@ -60,7 +60,7 @@ AS       := /usr/bin/as
 ## User defined environment variables
 ##
 CodeLiteDir:=/usr/share/codelite
-Objects0=$(IntermediateDirectory)/main.c$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/main.c$(ObjectSuffix) $(IntermediateDirectory)/replica-file.c$(ObjectSuffix) $(IntermediateDirectory)/replica-file-header.c$(ObjectSuffix) 
 
 
 
@@ -95,6 +95,22 @@ $(IntermediateDirectory)/main.c$(DependSuffix): main.c
 $(IntermediateDirectory)/main.c$(PreprocessSuffix): main.c
 	@$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.c$(PreprocessSuffix) "main.c"
 
+$(IntermediateDirectory)/replica-file.c$(ObjectSuffix): replica-file.c $(IntermediateDirectory)/replica-file.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "/home/gabriel/Git/replica/replica-file.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/replica-file.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/replica-file.c$(DependSuffix): replica-file.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/replica-file.c$(ObjectSuffix) -MF$(IntermediateDirectory)/replica-file.c$(DependSuffix) -MM "replica-file.c"
+
+$(IntermediateDirectory)/replica-file.c$(PreprocessSuffix): replica-file.c
+	@$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/replica-file.c$(PreprocessSuffix) "replica-file.c"
+
+$(IntermediateDirectory)/replica-file-header.c$(ObjectSuffix): replica-file-header.c $(IntermediateDirectory)/replica-file-header.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "/home/gabriel/Git/replica/replica-file-header.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/replica-file-header.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/replica-file-header.c$(DependSuffix): replica-file-header.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/replica-file-header.c$(ObjectSuffix) -MF$(IntermediateDirectory)/replica-file-header.c$(DependSuffix) -MM "replica-file-header.c"
+
+$(IntermediateDirectory)/replica-file-header.c$(PreprocessSuffix): replica-file-header.c
+	@$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/replica-file-header.c$(PreprocessSuffix) "replica-file-header.c"
+
 
 -include $(IntermediateDirectory)/*$(DependSuffix)
 ##
@@ -104,6 +120,12 @@ clean:
 	$(RM) $(IntermediateDirectory)/main.c$(ObjectSuffix)
 	$(RM) $(IntermediateDirectory)/main.c$(DependSuffix)
 	$(RM) $(IntermediateDirectory)/main.c$(PreprocessSuffix)
+	$(RM) $(IntermediateDirectory)/replica-file.c$(ObjectSuffix)
+	$(RM) $(IntermediateDirectory)/replica-file.c$(DependSuffix)
+	$(RM) $(IntermediateDirectory)/replica-file.c$(PreprocessSuffix)
+	$(RM) $(IntermediateDirectory)/replica-file-header.c$(ObjectSuffix)
+	$(RM) $(IntermediateDirectory)/replica-file-header.c$(DependSuffix)
+	$(RM) $(IntermediateDirectory)/replica-file-header.c$(PreprocessSuffix)
 	$(RM) $(OutputFile)
 	$(RM) ".build-debug/replica"
 
