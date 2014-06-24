@@ -57,24 +57,24 @@ rep_file_open ()
 int
 rep_file_read ()
 {
-        FILE *source_fhd;
-	FILE *destination_fhd;
-        char file_buffer[4096];
+    FILE *source_fhd;
+    FILE *destination_fhd;
+    char file_buffer[4096];
 	int read_chars_in_buffer = 0;
-	
+
 
         source_fhd = fopen ("test.rep", "r");
         if (source_fhd == NULL)
         {
                 printf ("file error!\n");
-                return;
+                return 0;
         }
 
         destination_fhd = fopen ("test2.rep", "w");
         if (destination_fhd == NULL)
         {
                 printf ("file error!\n");
-                return;
+                return 0;
         }
 
         while(1)
@@ -106,7 +106,7 @@ rep_file_header_init ()
                 uuid_generate (file_header->replication_uuid);
         }
         return (file_header);
-}        
+}
 
 void
 rep_file_header_print (rep_file_t *file_header)
@@ -126,8 +126,7 @@ rep_file_header_print (rep_file_t *file_header)
 }
 
 void
-rep_header_free (rep_file_t *file_header)
-{
+rep_header_free (rep_file_t *file_header) {
         free (file_header);
 }
 

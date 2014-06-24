@@ -1,5 +1,8 @@
-CC=gcc
+.PHONY: clean All
 
-all:
-	$(CC) -o replica *.c -luuid
-
+All:
+	@echo "----------Building project:[ replica - Debug ]----------"
+	@$(MAKE) -f  "replica.mk"
+clean:
+	@echo "----------Cleaning project:[ replica - Debug ]----------"
+	@$(MAKE) -f  "replica.mk" clean
